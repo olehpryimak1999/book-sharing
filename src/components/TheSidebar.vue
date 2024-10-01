@@ -30,14 +30,14 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import { ROUTE_NAME_WELCOME } from '@/constants';
+import { ROUTE_NAME_MY_BOOKS, ROUTE_NAME_WELCOME } from '@/constants';
 
 export default {
     name: 'TheSidebar',
     data() {
         return {
             items: [
-                { text: 'My Books', icon: 'mdi-folder' },
+                { text: 'My Books', icon: 'mdi-folder', handler: this.goToMyBooks },
                 { text: 'Shared with me', icon: 'mdi-account-multiple' },
                 { text: 'Recent', icon: 'mdi-history' },
                 { text: 'Log out', icon: 'mdi-logout', handler: this.logoutHandler },
@@ -52,6 +52,9 @@ export default {
         logoutHandler() {
             this.logout();
             this.$router.push({ name: ROUTE_NAME_WELCOME });
+        },
+        goToMyBooks() {
+            this.$router.push({ name: ROUTE_NAME_MY_BOOKS });
         },
     },
 };

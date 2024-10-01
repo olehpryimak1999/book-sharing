@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { beforeEach } from '@/router/beforeEach';
 import authorized from './middleware/authorized';
 import unauthorized from './middleware/unauthorized';
-import { ROUTE_NAME_WELCOME, ROUTE_NAME_HOME } from '@/constants';
+import { ROUTE_NAME_WELCOME, ROUTE_NAME_HOME, ROUTE_NAME_MY_BOOKS } from '@/constants';
 
 const routes = [
     {
@@ -43,6 +43,16 @@ const routes = [
             protected: true,
         },
         component: () => import('../views/ProfileView.vue'),
+    },
+    {
+        path: '/my-books',
+        name: ROUTE_NAME_MY_BOOKS,
+        meta: {
+            layout: 'main',
+            middleware: [authorized],
+            protected: true,
+        },
+        component: () => import('../views/MyBooksView.vue'),
     },
 ];
 const router = createRouter({
