@@ -1,9 +1,9 @@
 <template>
-    <div class="search">
+    <div class="search page-container">
         <div class="mb-6">
             <v-text-field
                 v-model="search"
-                placeholder="Search..."
+                placeholder="Type for search..."
                 max-width="200"
                 variant="underlined"
                 :loading="isSearching"

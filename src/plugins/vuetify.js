@@ -16,4 +16,16 @@ export default createVuetify({
         },
     },
     directives,
+    theme: {
+        themes: {
+            light: {
+                colors: {
+                    background: '#F6F8FF',
+                    'on-background': '#566690',
+                    'on-surface': '#566690',
+                    surface: '#F6F8FF',
+                },
+            },
+        },
+    },
 });
