@@ -10,11 +10,18 @@
 
 <script>
 import TheSidebar from '@/components/TheSidebar.vue';
+import { mapActions } from 'vuex';
 
 export default {
     name: 'MainLayout',
     components: {
         TheSidebar,
+    },
+    mounted() {
+        this.getAllBooks();
+    },
+    methods: {
+        ...mapActions('common', ['getAllBooks']),
     },
 };
 </script>
