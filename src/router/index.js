@@ -2,7 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { beforeEach } from '@/router/beforeEach';
 import authorized from './middleware/authorized';
 import unauthorized from './middleware/unauthorized';
-import { ROUTE_NAME_WELCOME, ROUTE_NAME_HOME, ROUTE_NAME_MY_BOOKS } from '@/constants';
+import {
+    ROUTE_NAME_WELCOME,
+    ROUTE_NAME_HOME,
+    ROUTE_NAME_MY_BOOKS,
+    ROUTE_NAME_PROFILE,
+} from '@/constants';
 
 const routes = [
     {
@@ -36,7 +41,7 @@ const routes = [
     },
     {
         path: '/profile',
-        name: 'profile',
+        name: ROUTE_NAME_PROFILE,
         meta: {
             layout: 'main',
             middleware: [authorized],

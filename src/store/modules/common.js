@@ -16,7 +16,7 @@ const getters = {
 const actions = {
     async getAllBooks({ commit }) {
         try {
-            const { data } = await axios.get('/books', { params: { search: '' } });
+            const { data } = await axios.get('/book/all', { params: { search: '' } });
 
             commit('updateValue', { key: 'books', value: data });
         } catch (e) {

@@ -16,13 +16,13 @@ $hook: red;
 }
 @media screen and (max-width: #{$xl}) {
     .page-container {
-        max-width: 1584px;
+        max-width: 1200px;
     }
 }
 
 @media screen and (max-width: #{$lg}) {
     .page-container, .about-page-container {
-        max-width: 85%;
+        max-width: 65%;
     }
 }
 

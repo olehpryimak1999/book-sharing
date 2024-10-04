@@ -17,7 +17,7 @@ const getters = {
 const actions = {
     async checkAuth({ commit }) {
         try {
-            const { data } = await axios.get('user_info/');
+            const { data } = await axios.get('user/info');
 
             if (data?.ok) {
                 commit('updateValue', { key: 'isAuthenticated', value: true });

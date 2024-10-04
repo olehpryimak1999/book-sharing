@@ -1,11 +1,18 @@
 <template>
-    <v-navigation-drawer permanent>
+    <v-navigation-drawer permanent width="300">
         <v-list>
             <v-list-item
-                :prepend-avatar="userData.profile_picture"
-                :subtitle="userData.email"
-                :title="userData.name"
-            />
+                :prepend-avatar="userData.picture"
+                :active="false"
+                :to="{ name: ROUTE_NAME_PROFILE }"
+            >
+                <v-list-item-title>
+                    {{ userData.first_name }} {{ userData.last_name }}
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                    {{ userData.email }}
+                </v-list-item-subtitle>
+            </v-list-item>
         </v-list>
 
         <v-divider></v-divider>
@@ -30,12 +37,13 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import { ROUTE_NAME_MY_BOOKS, ROUTE_NAME_WELCOME } from '@/constants';
+import { ROUTE_NAME_MY_BOOKS, ROUTE_NAME_PROFILE, ROUTE_NAME_WELCOME } from '@/constants';
 
 export default {
     name: 'TheSidebar',
     data() {
         return {
+            ROUTE_NAME_PROFILE,
             items: [
                 { text: 'My Books', icon: 'mdi-folder', handler: this.goToMyBooks },
                 { text: 'Shared with me', icon: 'mdi-account-multiple' },
