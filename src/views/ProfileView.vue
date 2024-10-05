@@ -9,6 +9,7 @@
             append-inner-icon="mdi-pencil"
             max-width="500"
             :model-value="[userData.first_name, userData.middle_name, userData.last_name].join(' ')"
+            @click:append-inner="handleNameAppendInnerClick"
         />
         <v-file-input
             :model-value="photo"
@@ -43,19 +44,23 @@
             @click:append-inner="handleAppendInnerClick"
         />
         <post-selector v-model="showPostSelector" />
+        <name-changer v-model="showNameChanger" />
     </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import PostSelector from '@/components/PostSelector.vue';
+import NameChanger from '@/components/NameChanger.vue';
 
 export default {
     components: {
+        NameChanger,
         PostSelector,
     },
     data() {
         return {
+            showNameChanger: false,
             showPostSelector: false,
             photo: null,
         };
@@ -67,6 +72,9 @@ export default {
         ...mapActions('auth', ['checkAuth']),
         handleAppendInnerClick() {
             this.showPostSelector = true;
+        },
+        handleNameAppendInnerClick() {
+            this.showNameChanger = true;
         },
         async handlePhotoUpdate(file) {
             this.photo = null;
