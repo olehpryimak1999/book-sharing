@@ -1,49 +1,49 @@
 <template>
     <div class="profile page-container pt-16">
-        <v-text-field
-            readonly
-            variant="solo"
-            label="User name"
-            class="mb-3"
-            bg-color="white"
-            append-inner-icon="mdi-pencil"
-            max-width="500"
-            :model-value="[userData.first_name, userData.middle_name, userData.last_name].join(' ')"
-            @click:append-inner="handleNameAppendInnerClick"
-        />
-        <v-file-input
-            :model-value="photo"
-            variant="solo"
-            label="Update photo"
-            max-width="500"
-            prepend-icon=""
-            bg-color="white"
-            class="mb-3"
-            :clearable="false"
-            append-inner-icon="mdi-camera"
-            @update:model-value="handlePhotoUpdate"
-        />
-        <v-text-field
-            readonly
-            variant="solo"
-            label="Phone number"
-            class="mb-3"
-            bg-color="white"
-            append-inner-icon="mdi-pencil"
-            max-width="500"
-            :model-value="userData.phone || '--'"
-            @click:append-inner="handlePhoneAppendInnerClick"
-        />
-        <v-text-field
-            readonly
-            variant="solo"
-            bg-color="white"
-            label="Your address"
-            append-inner-icon="mdi-pencil"
-            max-width="500"
-            :model-value="userData.address || '--'"
-            @click:append-inner="handleAppendInnerClick"
-        />
+        <v-card class="profile-card pa-6">
+            <v-text-field
+                readonly
+                variant="plain"
+                label="User name"
+                class="mb-3"
+                bg-color="white"
+                append-inner-icon="mdi-pencil"
+                :model-value="
+                    [userData.first_name, userData.middle_name, userData.last_name].join(' ')
+                "
+                @click:append-inner="handleNameAppendInnerClick"
+            />
+            <v-file-input
+                :model-value="photo"
+                variant="plain"
+                label="Update photo"
+                prepend-icon=""
+                bg-color="white"
+                class="mb-3"
+                :clearable="false"
+                append-inner-icon="mdi-camera"
+                @update:model-value="handlePhotoUpdate"
+            />
+            <v-text-field
+                readonly
+                variant="plain"
+                label="Phone number"
+                class="mb-3"
+                bg-color="white"
+                append-inner-icon="mdi-pencil"
+                :model-value="userData.phone || '--'"
+                @click:append-inner="handlePhoneAppendInnerClick"
+            />
+            <v-text-field
+                readonly
+                variant="plain"
+                bg-color="white"
+                label="Your address"
+                append-inner-icon="mdi-pencil"
+                :model-value="userData.address || '--'"
+                @click:append-inner="handleAppendInnerClick"
+            />
+        </v-card>
         <post-selector v-model="showPostSelector" />
         <name-changer v-model="showNameChanger" />
         <phone-selector v-model="showPhoneChanger" />
@@ -106,3 +106,10 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+.profile-card {
+    background-color: white;
+    max-width: 600px;
+}
+</style>
