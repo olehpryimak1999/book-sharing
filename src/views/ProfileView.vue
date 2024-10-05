@@ -10,6 +10,18 @@
             max-width="500"
             :model-value="[userData.first_name, userData.middle_name, userData.last_name].join(' ')"
         />
+        <v-file-input
+            :model-value="photo"
+            variant="solo"
+            label="Update photo"
+            max-width="500"
+            prepend-icon=""
+            bg-color="white"
+            class="mb-3"
+            :clearable="false"
+            append-inner-icon="mdi-camera"
+            @update:model-value="handlePhotoUpdate"
+        />
         <v-text-field
             readonly
             variant="solo"
@@ -35,7 +47,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import PostSelector from '@/components/PostSelector.vue';
 
 export default {
@@ -45,14 +57,35 @@ export default {
     data() {
         return {
             showPostSelector: false,
+            photo: null,
         };
     },
     computed: {
         ...mapGetters('auth', ['userData']),
     },
     methods: {
+        ...mapActions('auth', ['checkAuth']),
         handleAppendInnerClick() {
             this.showPostSelector = true;
+        },
+        async handlePhotoUpdate(file) {
+            this.photo = null;
+
+            try {
+                const formData = new FormData();
+
+                formData.append('file', file);
+
+                await this.axios.post('/user/info/photo', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+
+                this.checkAuth();
+            } catch (e) {
+                console.error(e);
+            }
         },
     },
 };
