@@ -5,24 +5,14 @@
         @update:model-value="$emit('update:modelValue', $event)"
     >
         <v-card>
-            <v-card-title class="text-center"> Редагування імені </v-card-title>
+            <v-card-title class="text-center">
+                Зміни свій номер телефону для Нової Пошти
+            </v-card-title>
             <v-card-text>
                 <div class="d-flex flex-column justify-center align-center">
                     <v-text-field
-                        v-model="userDataCopy.first_name"
-                        label="First name"
-                        width="450"
-                        variant="underlined"
-                    />
-                    <v-text-field
-                        v-model="userDataCopy.middle_name"
-                        label="Middle name"
-                        width="450"
-                        variant="underlined"
-                    />
-                    <v-text-field
-                        v-model="userDataCopy.last_name"
-                        label="Last name"
+                        v-model="userDataCopy.phone"
+                        label="Phone"
                         width="450"
                         variant="underlined"
                     />
@@ -44,11 +34,11 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { cloneDeep } from 'lodash';
 
 export default {
-    name: 'NameChanger',
+    name: 'PhoneSelector',
     props: {
         modelValue: {
             type: Boolean,
@@ -74,9 +64,7 @@ export default {
         ...mapActions('auth', ['checkAuth']),
         async handleSaveClick() {
             await this.updateAccount({
-                first_name: this.userDataCopy.first_name,
-                middle_name: this.userDataCopy.middle_name,
-                last_name: this.userDataCopy.last_name,
+                phone: this.userDataCopy.phone,
             });
             await this.checkAuth();
 
@@ -86,4 +74,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.phone-selector {
+    width: 450px;
+    height: 40px;
+
+    :deep(.vti__dropdown) {
+        display: none;
+    }
+}
+</style>

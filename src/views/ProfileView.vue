@@ -32,6 +32,7 @@
             append-inner-icon="mdi-pencil"
             max-width="500"
             :model-value="userData.phone || '--'"
+            @click:append-inner="handlePhoneAppendInnerClick"
         />
         <v-text-field
             readonly
@@ -45,6 +46,7 @@
         />
         <post-selector v-model="showPostSelector" />
         <name-changer v-model="showNameChanger" />
+        <phone-selector v-model="showPhoneChanger" />
     </div>
 </template>
 
@@ -52,15 +54,18 @@
 import { mapActions, mapGetters } from 'vuex';
 import PostSelector from '@/components/PostSelector.vue';
 import NameChanger from '@/components/NameChanger.vue';
+import PhoneSelector from '@/components/PhoneSelector.vue';
 
 export default {
     components: {
+        PhoneSelector,
         NameChanger,
         PostSelector,
     },
     data() {
         return {
             showNameChanger: false,
+            showPhoneChanger: false,
             showPostSelector: false,
             photo: null,
         };
@@ -75,6 +80,9 @@ export default {
         },
         handleNameAppendInnerClick() {
             this.showNameChanger = true;
+        },
+        handlePhoneAppendInnerClick() {
+            this.showPhoneChanger = true;
         },
         async handlePhotoUpdate(file) {
             this.photo = null;
