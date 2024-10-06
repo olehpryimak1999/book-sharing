@@ -88,7 +88,7 @@ export default {
     methods: {
         async getMyBooks() {
             try {
-                const { data } = await this.axios.get('/book/my');
+                const { data } = await this.axios.get('/instance/my');
 
                 this.books = data;
             } catch (e) {
@@ -107,7 +107,7 @@ export default {
                     formData.append(field, value);
                 });
 
-                await this.axios.post('/book/my', formData, {
+                await this.axios.post('/instance/my', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
@@ -123,7 +123,7 @@ export default {
         },
         async handleDeleteClick(id) {
             try {
-                await this.axios.delete(`/book/my/${id}`);
+                await this.axios.delete(`/instance/my/${id}`);
                 this.getMyBooks();
             } catch (e) {
                 console.log(e);

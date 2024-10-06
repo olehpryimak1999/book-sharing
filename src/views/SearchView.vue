@@ -46,7 +46,7 @@ export default {
     methods: {
         async getBooks() {
             try {
-                const { data } = await this.axios.get('/book/all', {
+                const { data } = await this.axios.get('/instance/exchange/list', {
                     params: {
                         search: this.search,
                     },
