@@ -1,5 +1,5 @@
 <template>
-    <div class="page-container pt-16">
+    <v-container>
         <div class="d-flex justify-end mb-8">
             <v-btn color="primary" @click="showDialog = true">
                 <v-icon class="mr-1">mdi-plus</v-icon>
@@ -61,7 +61,7 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-    </div>
+    </v-container>
 </template>
 
 <script>

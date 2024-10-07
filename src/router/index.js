@@ -20,9 +20,9 @@ const routes = [
         component: () => import('../views/WelcomeView.vue'),
     },
     {
-        path: '/',
+        path: '/search',
         name: ROUTE_NAME_HOME,
-        component: () => import('../views/SearchView.vue'),
+        component: () => import('../views/BookSearch.vue'),
         meta: {
             layout: 'main',
             middleware: [authorized],
@@ -58,6 +58,16 @@ const routes = [
             protected: true,
         },
         component: () => import('../views/MyBooksView.vue'),
+    },
+    {
+        path: '/book/:id',
+        name: 'Book for exchange',
+        meta: {
+            layout: 'main',
+            middleware: [authorized],
+            protected: true,
+        },
+        component: () => import('../views/BookPage.vue'),
     },
 ];
 const router = createRouter({

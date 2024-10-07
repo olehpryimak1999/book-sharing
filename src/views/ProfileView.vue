@@ -1,6 +1,6 @@
 <template>
-    <div class="profile page-container pt-16">
-        <v-card class="profile-card pa-6">
+    <v-container>
+        <div class="profile-card pa-6">
             <v-text-field
                 readonly
                 variant="plain"
@@ -43,11 +43,13 @@
                 :model-value="userData.address || '--'"
                 @click:append-inner="handleAppendInnerClick"
             />
-        </v-card>
+            <v-divider></v-divider>
+            <v-btn variant="text" class="mt-4" @click="logoutHandler"> Вийти </v-btn>
+        </div>
         <post-selector v-model="showPostSelector" />
         <name-changer v-model="showNameChanger" />
         <phone-selector v-model="showPhoneChanger" />
-    </div>
+    </v-container>
 </template>
 
 <script>
@@ -55,6 +57,7 @@ import { mapActions, mapGetters } from 'vuex';
 import PostSelector from '@/components/PostSelector.vue';
 import NameChanger from '@/components/NameChanger.vue';
 import PhoneSelector from '@/components/PhoneSelector.vue';
+import { ROUTE_NAME_WELCOME } from '@/constants';
 
 export default {
     components: {
@@ -74,7 +77,7 @@ export default {
         ...mapGetters('auth', ['userData']),
     },
     methods: {
-        ...mapActions('auth', ['checkAuth']),
+        ...mapActions('auth', ['checkAuth', 'logout']),
         handleAppendInnerClick() {
             this.showPostSelector = true;
         },
@@ -103,13 +106,19 @@ export default {
                 console.error(e);
             }
         },
+        logoutHandler() {
+            this.logout();
+            this.$router.push({ name: ROUTE_NAME_WELCOME });
+        },
     },
 };
 </script>
 
 <style lang="scss" scoped>
 .profile-card {
-    background-color: white;
-    max-width: 600px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 </style>

@@ -1,14 +1,13 @@
 <template>
     <v-app>
-        <v-app-bar :elevation="0">
-            <div style="width: 100%">
-                <div class="about-page-container">
-                    <div class="d-flex justify-space-between align-center">
-                        <v-app-bar-title style="font-size: 32px">Books share</v-app-bar-title>
-                        <google-login :callback="authCallback" />
-                    </div>
-                </div>
-            </div>
+        <v-app-bar app color="header" dark elevate-on-scroll>
+            <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+            <v-toolbar-title>Book Exchange</v-toolbar-title>
+
+            <v-spacer></v-spacer>
+
+            <google-login :callback="authCallback" class="mr-1" />
         </v-app-bar>
 
         <v-main class="mt-10">

@@ -20,10 +20,13 @@ export default createVuetify({
         themes: {
             light: {
                 colors: {
-                    background: '#F6F8FF',
-                    'on-background': '#566690',
-                    'on-surface': '#566690',
-                    surface: '#F6F8FF',
+                    background: '#F8F9FA',
+                    secondary: '#6C757D',
+                    header: '#343A40',
+                    'on-background': '#212529',
+                    'on-surface': '#212529',
+                    surface: '#F8F9FA',
+                    primary: '#007BFF',
                 },
             },
         },

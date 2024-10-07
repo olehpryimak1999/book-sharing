@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <the-sidebar />
+        <the-header />
 
         <v-main>
             <router-view />
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import TheSidebar from '@/components/TheSidebar.vue';
 import { mapActions } from 'vuex';
+import TheHeader from '@/components/TheHeader.vue';
 
 export default {
     name: 'MainLayout',
     components: {
-        TheSidebar,
+        TheHeader,
     },
     mounted() {
         this.getAllBooks();
