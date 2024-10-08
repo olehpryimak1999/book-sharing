@@ -1,9 +1,9 @@
 <template>
     <v-app>
         <v-app-bar app color="header" dark elevate-on-scroll>
-            <v-app-bar-nav-icon></v-app-bar-nav-icon>
+            <img src="/logo.png" style="width: 64px" />
 
-            <v-toolbar-title>Book Exchange</v-toolbar-title>
+            <v-toolbar-title>Книга до Книги</v-toolbar-title>
 
             <v-spacer></v-spacer>
 
