@@ -18,14 +18,25 @@
                         Phone: <span class="book-year text-secondary">{{ book.userPhone }}</span>
                     </p>
                 </div>
-                <v-btn
-                    variant="outlined"
-                    class="book-rent"
-                    color="primary"
-                    @click="handleRentClick(book.id)"
-                >
-                    Позичити
-                </v-btn>
+                <div class="book-rent">
+                    <v-btn
+                        v-if="book.exchange_status === 1"
+                        variant="outlined"
+                        color="orange"
+                        readonly
+                    >
+                        Очікує підтвердження
+                    </v-btn>
+                    <v-btn
+                        v-else
+                        variant="outlined"
+                        color="primary"
+                        :disabled="isLoading"
+                        @click="handleRentClick(book.id)"
+                    >
+                        Позичити
+                    </v-btn>
+                </div>
             </div>
         </v-container>
     </div>
@@ -37,6 +48,7 @@ export default {
     data() {
         return {
             books: [],
+            isLoading: false,
         };
     },
     created() {
@@ -55,14 +67,28 @@ export default {
             }
         },
         async handleRentClick(book) {
+            this.isLoading = true;
+            let group = 'success';
+            let title = 'Запит відправлений власнику книги!';
+
             try {
-                const { data } = await this.axios.post(`/exchange/create/`, {
+                await this.axios.post(`/exchange/create/`, {
                     book,
                 });
 
-                console.log(data);
+                this.getBookInfo();
             } catch (e) {
                 console.error(e);
+
+                group = 'error';
+                title = 'Не вдалося відправити запит';
+            } finally {
+                this.isLoading = false;
+
+                this.$notify({
+                    group,
+                    title,
+                });
             }
         },
     },
