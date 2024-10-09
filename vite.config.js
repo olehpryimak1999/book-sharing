@@ -1,22 +1,15 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-const path = require('path');
+import { fileURLToPath, URL } from 'node:url';
 
-export default defineConfig(() => ({
+export default defineConfig({
     plugins: [vue()],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, './src'),
-            '~': path.resolve(__dirname, './node_modules'),
+            '@': fileURLToPath(new URL('./src', import.meta.url)),
+            '~': fileURLToPath(new URL('./node_modules', import.meta.url)),
         },
         extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
-    },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                additionalData: `@import 'src/styles/_grid.scss';`,
-            },
-        },
     },
     server: {
         port: '8080',
@@ -24,4 +17,4 @@ export default defineConfig(() => ({
     preview: {
         port: '8080',
     },
-}));
+});

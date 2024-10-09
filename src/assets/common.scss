@@ -1,0 +1,44 @@
+$white: #ffffff;
+
+.card {
+    background-color: $white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+    font-size: 1.2em;
+
+    &:hover {
+        transform: scale(1.05);
+
+        .card__right-up-slot {
+            visibility: visible;
+        }
+    }
+
+    img {
+        width: auto;
+        max-height: 250px;
+    }
+
+    .card__right-up-slot {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        visibility: hidden;
+
+        &.card__right-up-slot_mandatory {
+            visibility: visible;
+        }
+    }
+
+    .card__right-down-slot {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+    }
+}

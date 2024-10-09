@@ -30,14 +30,47 @@ const routes = [
         },
     },
     {
-        path: '/history',
-        name: 'history',
+        path: '/exchanges',
+        name: 'exchanges',
         meta: {
             layout: 'main',
             middleware: [authorized],
             protected: true,
         },
-        component: () => import('../views/HistoryView.vue'),
+        component: () => import('../views/ExchangesPage.vue'),
+        children: [
+            { name: 'Exchanges redirect', path: '', redirect: { name: 'Current' } },
+            {
+                name: 'Current',
+                path: 'current',
+                meta: {
+                    layout: 'main',
+                    middleware: [authorized],
+                    protected: true,
+                },
+                component: () => import('@/components/exchanges/Current.vue'),
+            },
+            {
+                name: 'History',
+                path: 'history',
+                meta: {
+                    layout: 'main',
+                    middleware: [authorized],
+                    protected: true,
+                },
+                component: () => import('@/components/exchanges/History.vue'),
+            },
+            {
+                name: 'Requests',
+                path: 'requests',
+                meta: {
+                    layout: 'main',
+                    middleware: [authorized],
+                    protected: true,
+                },
+                component: () => import('@/components/exchanges/Requests.vue'),
+            },
+        ],
     },
     {
         path: '/profile',

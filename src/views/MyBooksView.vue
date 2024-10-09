@@ -6,17 +6,21 @@
                 Add book
             </v-btn>
         </div>
-        <div v-for="book in books" :key="book.id" class="book-card">
-            <img :src="book.photo_link" alt="book.name" />
-            <div class="book-info">
-                <h2 class="book-title">{{ book.name }}</h2>
-                <p class="book-author">Автор: {{ book.author }}</p>
-                <p class="book-year">Рік видання: {{ book.year }}</p>
+        <div v-for="book in books" :key="book.id" class="card">
+            <img :src="book.photo_link" alt="book.name" class="mr-4" />
+            <div>
+                <p class="mb-2">{{ book.name }}</p>
+                <p class="mb-2">
+                    Автор: <span class="text-secondary">{{ book.author }}</span>
+                </p>
+                <p>
+                    Рік видання: <span class="text-secondary">{{ book.year }}</span>
+                </p>
             </div>
             <v-btn
                 icon
                 variant="text"
-                class="book-delete"
+                class="card__right-up-slot"
                 width="32"
                 height="32"
                 @click="handleDeleteClick(book.id)"
@@ -133,56 +137,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.book-card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.3s;
-    display: flex;
-    align-items: center;
-    margin-bottom: 32px;
-
-    &:hover {
-        transform: scale(1.05);
-
-        .book-delete {
-            visibility: visible;
-        }
-    }
-
-    img {
-        width: auto;
-        max-height: 250px;
-    }
-
-    .book-info {
-        padding: 20px;
-    }
-    .book-title {
-        font-size: 1.5em;
-        color: #333;
-        margin-bottom: 10px;
-    }
-
-    .book-author {
-        font-size: 1.2em;
-        color: #666;
-    }
-
-    .book-year {
-        font-size: 1em;
-        color: #999;
-        margin-top: 10px;
-    }
-
-    .book-delete {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        visibility: hidden;
-    }
-}
-</style>
+<style lang="scss" scoped></style>
