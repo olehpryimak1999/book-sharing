@@ -22,7 +22,9 @@ $white: #ffffff;
 
     img {
         width: auto;
-        max-height: 250px;
+        height: 200px;
+        border-radius: 4px;
+        margin: 24px;
     }
 
     .card__right-up-slot {
